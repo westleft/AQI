@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./scss/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>空氣品質指標  (AQI)</h1>
+            <select name="" id="">
+                <option value="請選擇地區"></option>
+            </select>
+        </div>
+        <table>
+            <tr>
+                <th class="th01">0～50</th>
+                <th class="th02">51～100</th>
+                <th class="th03">101～150</th>
+                <th class="th04">151～200</th>
+                <th class="th05">201～300</th>
+                <th class="th06">301～400</th>
+            </tr>
+            <tr>
+                <td>良好</td>
+                <td>普通</td>
+                <td>對敏感族群<br>不健康</td>
+                <td>對所有族群<br>不健康</td>
+                <td>非常不健康</td>
+                <td>危害</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="divider">
+        <h2 class="city">高雄市</h2>
+        <hr>
+        <p>2019-01-24 14:00 更新</p>
+    </div>
+
+    <div class="content">
+        <div class="detail">
+            <div class="main">
+                <p class="mainTown">前金</p>
+                <p class="townNum">156</p>
+            </div>
+            <div class="townDeatil">
+                <div class="detail1"><p>臭氧　<span> O3 (ppb)</span></p><p class="detailNum">90</p></div>                
+                <div class="detail2"><p>懸浮微粒　<span> PM10 (μg/m³)</span></p><p class="detailNum">55</p></div>
+                <div class="detail3"><p>細懸浮微粒　<span> PM2.5 (μg/m³)</span></p><p class="detailNum">44</p></div>
+                <div class="detail4"><p>一氧化碳　<span> CO (ppm)</span></p><p class="detailNum">11</p></div>
+                <div class="detail5"><p>二氧化硫　<span> SO2 (ppb)</span></p><p class="detailNum">11</p></div>
+                <div class="detail6"><p>二氧化氮　<span> NO2 (ppb)</span></p><p class="detailNum">11</p></div>          
+            </div>
+        </div>
+        <div class="town">
+            <div class="townDetail">
+                <p class="mainTown">前金</p>
+                <p class="townNum">156</p>
+            </div>
+            <div class="townDetail">
+                <p class="mainTown">前金</p>
+                <p class="townNum">156</p>
+            </div>
+            <div class="townDetail">
+                <p class="mainTown">前金</p>
+                <p class="townNum">156</p>
+            </div>
+            <div class="townDetail">
+                <p class="mainTown">前金</p>
+                <p class="townNum">156</p>
+            </div>
+            <div class="townDetail">
+                <p class="mainTown">前金</p>
+                <p class="townNum">156</p>
+            </div>
+            <div class="townDetail">
+                <p class="mainTown">前金</p>
+                <p class="townNum">156</p>
+            </div>
+            <div class="townDetail">
+                <p class="mainTown">前金</p>
+                <p class="townNum">156</p>
+            </div>
+            <div class="townDetail">
+                <p class="mainTown">前金</p>
+                <p class="townNum">156</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>資料來源：行政院環境保護署</p>
+        <p>Copyright © 2019 HexSchool. All rights reserved.</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./aqi.js"></script>
+</body>
+</html>
