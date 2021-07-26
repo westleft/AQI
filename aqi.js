@@ -3,6 +3,7 @@ let data
 let select = document.querySelector('select')
 let town = document.querySelector('.town')
 let city = document.querySelector('.divider .city')
+let mainCityDetail = document.querySelector('.main')
 
 fetch('https://data.epa.gov.tw/api/v1/aqx_p_432?offset=0&limit=10000&api_key=177a1065-4686-4086-a45e-08389e85ed17', {})
     .then((response) => {
@@ -35,7 +36,8 @@ select.addEventListener('click', function (e) {
             let mainTown = document.querySelectorAll('.mainTown')
             let townNum = document.querySelectorAll('.townNum')
 
-            renderAqi(townNum,mainTown)
+            renderAqi(townNum, mainTown)
+            renderMainCity(item)
         }
     })
 })
@@ -57,30 +59,48 @@ function renderOption(data) {
 }
 
 // 判斷顏色,字體大小
-function renderAqi(data,mainTown) {
+function renderAqi(data, mainTown) {
     data.forEach(function (item) {
-        let aqiNumber = item.textContent
-        if (aqiNumber < 50) {
-            item.style.backgroundColor = '#95F084'
-        } else if (aqiNumber < 100) {
-            item.style.backgroundColor = '#FFE695'
-        } else if (aqiNumber < 150) {
-            item.style.backgroundColor = '#FFAF6A'
-        } else if (aqiNumber < 200) {
-            item.style.backgroundColor = '#FF5757'
-        } else if (aqiNumber < 300) {
-            item.style.backgroundColor = '#9777FF'
-        } else {
-            item.style.backgroundColor = '#AD1774'
-        }
-
- 
+        color(item.textContent,item)
     })
-    mainTown.forEach(function(item,index){
-        let text = item.textContent
-        if(text.length > 3){
-            item.style.fontSize = '32px'
-        }
+
+    mainTown.forEach(function (item, index) {
+        textSize(item)
     })
 }
 
+function renderMainCity(item) {
+    mainCityDetail.innerHTML = `
+        <p class="mainTown">${item.SiteName}</p>
+        <p class="townNum">${item.AQI}</p>
+    `
+    let num = document.querySelector('.townNum')
+    let mainText = document.querySelector('.mainTown')
+
+    color(item.AQI,num)
+    textSize(mainText)
+}
+
+
+function color(num,item) {
+    if (num < 50) {
+        item.style.backgroundColor = '#95F084'
+    } else if (num < 100) {
+        item.style.backgroundColor = '#FFE695'
+    } else if (num < 150) {
+        item.style.backgroundColor = '#FFAF6A'
+    } else if (num < 200) {
+        item.style.backgroundColor = '#FF5757'
+    } else if (num < 300) {
+        item.style.backgroundColor = '#9777FF'
+    } else {
+        item.style.backgroundColor = '#AD1774'
+    }
+}
+
+function textSize(item){
+    let text = item.textContent
+    if (text.length > 3) {
+        item.style.fontSize = '32px'
+    }
+}

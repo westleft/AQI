@@ -218,6 +218,7 @@ body {
 }
 
 .content .detail .main * {
+  font-weight: 600;
   border-bottom: solid 4px;
 }
 
