@@ -4,6 +4,7 @@ let select = document.querySelector('select')
 let town = document.querySelector('.town')
 let city = document.querySelector('.divider .city')
 let mainCityDetail = document.querySelector('.main')
+let mainTownDeatil = document.querySelector('.mainTownDeatil')
 
 fetch('https://data.epa.gov.tw/api/v1/aqx_p_432?offset=0&limit=10000&api_key=177a1065-4686-4086-a45e-08389e85ed17', {})
     .then((response) => {
@@ -15,6 +16,7 @@ fetch('https://data.epa.gov.tw/api/v1/aqx_p_432?offset=0&limit=10000&api_key=177
         data = jsonData.records
 
         renderOption(data)
+        renderDetail(data[0])
         console.log(data);
     }).catch((err) => {
         // console.log('錯誤:', err);
@@ -31,11 +33,28 @@ select.addEventListener('click', function (e) {
                 <div class="townDetail">
                     <p class="mainTown">${item.SiteName}</p>
                     <p class="townNum">${item.AQI}</p>
+                    
                 </div>
             `
             let mainTown = document.querySelectorAll('.mainTown')
             let townNum = document.querySelectorAll('.townNum')
+            let townDetail = document.querySelectorAll('.townDetail')
+            // console.log(townDetail)
 
+            townDetail.forEach(function(item,index){
+                item.addEventListener('click',function(){
+                    console.log(item.value)
+                    data.forEach(function(d, i){
+                        // console.log(d.SiteNamem,item)
+                        // if(d.SiteName == item.value){
+                        //     console.log('dd')
+                        // }
+                    })
+                })
+            })
+
+
+            renderDetail(item)
             renderAqi(townNum, mainTown)
             renderMainCity(item)
         }
@@ -61,7 +80,7 @@ function renderOption(data) {
 // 判斷顏色,字體大小
 function renderAqi(data, mainTown) {
     data.forEach(function (item) {
-        color(item.textContent,item)
+        color(item.textContent, item)
     })
 
     mainTown.forEach(function (item, index) {
@@ -77,12 +96,12 @@ function renderMainCity(item) {
     let num = document.querySelector('.townNum')
     let mainText = document.querySelector('.mainTown')
 
-    color(item.AQI,num)
+    color(item.AQI, num)
     textSize(mainText)
 }
 
 
-function color(num,item) {
+function color(num, item) {
     if (num < 50) {
         item.style.backgroundColor = '#95F084'
     } else if (num < 100) {
@@ -98,9 +117,21 @@ function color(num,item) {
     }
 }
 
-function textSize(item){
+function textSize(item) {
     let text = item.textContent
     if (text.length > 3) {
         item.style.fontSize = '32px'
     }
+}
+
+
+function renderDetail(item) {
+    mainTownDeatil.innerHTML = `
+    <div class="detail1"><p>臭氧　<span> O3 (ppb)</span></p><p class="detailNum">${item.O3}</p></div>                
+    <div class="detail2"><p>懸浮微粒　<span> PM10 (μg/m³)</span></p><p class="detailNum">${item.PM10}</p></div>
+    <div class="detail3"><p>細懸浮微粒　<span> PM2.5 (μg/m³)</span></p><p class="detailNum">${item.PM10}</p></div>
+    <div class="detail4"><p>一氧化碳　<span> CO (ppm)</span></p><p class="detailNum">${item.CO}</p></div>
+    <div class="detail5"><p>二氧化硫　<span> SO2 (ppb)</span></p><p class="detailNum">${item.SO2}</p></div>
+    <div class="detail6"><p>二氧化氮　<span> NO2 (ppb)</span></p><p class="detailNum">${item.NO2}</p></div>          
+    `
 }

@@ -142,7 +142,7 @@ body {
                 background-color: #FF5757;
             }
         }
-        .townDeatil {
+        .mainTownDeatil {
             @include flex(flex-start,center);
             flex-direction: column;
             padding: 2% 4%;

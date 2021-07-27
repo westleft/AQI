@@ -242,7 +242,7 @@ body {
   background-color: #FF5757;
 }
 
-.content .detail .townDeatil {
+.content .detail .mainTownDeatil {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -263,7 +263,7 @@ body {
           flex: 8;
 }
 
-.content .detail .townDeatil div {
+.content .detail .mainTownDeatil div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -280,11 +280,11 @@ body {
   border-bottom: #F0F0F0 solid 2px;
 }
 
-.content .detail .townDeatil .detail6 {
+.content .detail .mainTownDeatil .detail6 {
   border: none;
 }
 
-.content .detail .townDeatil p {
+.content .detail .mainTownDeatil p {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -301,7 +301,7 @@ body {
   text-align: end;
 }
 
-.content .detail .townDeatil .detailNum {
+.content .detail .mainTownDeatil .detailNum {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -314,7 +314,7 @@ body {
   width: 10%;
 }
 
-.content .detail .townDeatil span {
+.content .detail .mainTownDeatil span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
