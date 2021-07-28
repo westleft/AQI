@@ -17,6 +17,7 @@ fetch('https://data.epa.gov.tw/api/v1/aqx_p_432?offset=0&limit=10000&api_key=177
 
         renderOption(data)
         renderDetail(data[0])
+        renderMainCity(data[0])
         console.log(data);
     }).catch((err) => {
         // console.log('錯誤:', err);
@@ -39,20 +40,26 @@ select.addEventListener('click', function (e) {
             let mainTown = document.querySelectorAll('.mainTown')
             let townNum = document.querySelectorAll('.townNum')
             let townDetail = document.querySelectorAll('.townDetail')
-            // console.log(townDetail)
+            console.log(townDetail.length)
+
+            if(townDetail.length > 9){
+                
+            }
 
             townDetail.forEach(function(item,index){
                 item.addEventListener('click',function(){
-                    console.log(item.value)
+                    let content = item.textContent
+                    content = content.replaceAll(' ','').replace('\n','').split('\n')
+
+                    console.log(content[0])
                     data.forEach(function(d, i){
-                        // console.log(d.SiteNamem,item)
-                        // if(d.SiteName == item.value){
-                        //     console.log('dd')
-                        // }
+                        if(d.SiteName == content[0]){
+                            renderDetail(d)
+                            renderMainCity(d)
+                        }
                     })
                 })
             })
-
 
             renderDetail(item)
             renderAqi(townNum, mainTown)
