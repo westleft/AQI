@@ -9,24 +9,10 @@
     width: $w;
 }
 
-@mixin pad{
-    @media(max-width:768px){
-      @content;
-    }
-}
-
-@mixin mobile{
-    @media(max-width:375px){
-      @content;
-    }
-}
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto Condensed', sans-serif;
-    transition: 0.2s;
     // border: 2px solid;
 }
 
@@ -61,8 +47,7 @@ body {
         }
     }
     table {
-        height: 100%;
-        width: 100%;
+        @include size(100%, 100%);
         margin: 0;
         padding: 0;
         flex: 7;   
@@ -210,7 +195,6 @@ body {
 .footer {
     @include size(4%,100%);
     @include flex(center,space-between);
-    display: flex;
     position: fixed;
     font-size: 16px;
     padding: 0 8%;

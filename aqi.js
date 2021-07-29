@@ -42,16 +42,18 @@ select.addEventListener('click', function (e) {
             let townDetail = document.querySelectorAll('.townDetail')
             console.log(townDetail.length)
 
+            //調整版面
             if(townDetail.length > 9){
-                
+                townDetail.forEach(function(item){
+                    item.style.width = '24%'
+                })
             }
 
+            //點選縣市跳出細節
             townDetail.forEach(function(item,index){
                 item.addEventListener('click',function(){
                     let content = item.textContent
                     content = content.replaceAll(' ','').replace('\n','').split('\n')
-
-                    console.log(content[0])
                     data.forEach(function(d, i){
                         if(d.SiteName == content[0]){
                             renderDetail(d)
@@ -95,6 +97,7 @@ function renderAqi(data, mainTown) {
     })
 }
 
+//顯示左方細節
 function renderMainCity(item) {
     mainCityDetail.innerHTML = `
         <p class="mainTown">${item.SiteName}</p>
@@ -107,7 +110,7 @@ function renderMainCity(item) {
     textSize(mainText)
 }
 
-
+//判斷顏色
 function color(num, item) {
     if (num < 50) {
         item.style.backgroundColor = '#95F084'
@@ -124,6 +127,7 @@ function color(num, item) {
     }
 }
 
+//判斷字體大小
 function textSize(item) {
     let text = item.textContent
     if (text.length > 3) {
@@ -131,7 +135,7 @@ function textSize(item) {
     }
 }
 
-
+//顯示細節
 function renderDetail(item) {
     mainTownDeatil.innerHTML = `
     <div class="detail1"><p>臭氧　<span> O3 (ppb)</span></p><p class="detailNum">${item.O3}</p></div>                
