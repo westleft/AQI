@@ -5,6 +5,7 @@ let town = document.querySelector('.town')
 let city = document.querySelector('.divider .city')
 let mainCityDetail = document.querySelector('.main')
 let mainTownDeatil = document.querySelector('.mainTownDeatil')
+let upDate = document.querySelector('.divider p')
 
 fetch('https://data.epa.gov.tw/api/v1/aqx_p_432?offset=0&limit=10000&api_key=177a1065-4686-4086-a45e-08389e85ed17', {})
     .then((response) => {
@@ -18,7 +19,7 @@ fetch('https://data.epa.gov.tw/api/v1/aqx_p_432?offset=0&limit=10000&api_key=177
         renderOption(data)
         renderDetail(data[0])
         renderMainCity(data[0])
-        console.log(data);
+        date(data)
     }).catch((err) => {
         // console.log('錯誤:', err);
     });
@@ -40,22 +41,21 @@ select.addEventListener('click', function (e) {
             let mainTown = document.querySelectorAll('.mainTown')
             let townNum = document.querySelectorAll('.townNum')
             let townDetail = document.querySelectorAll('.townDetail')
-            console.log(townDetail.length)
 
             //調整版面
-            if(townDetail.length > 9){
-                townDetail.forEach(function(item){
+            if (townDetail.length > 9) {
+                townDetail.forEach(function (item) {
                     item.style.width = '24%'
                 })
             }
 
             //點選縣市跳出細節
-            townDetail.forEach(function(item,index){
-                item.addEventListener('click',function(){
+            townDetail.forEach(function (item, index) {
+                item.addEventListener('click', function () {
                     let content = item.textContent
-                    content = content.replaceAll(' ','').replace('\n','').split('\n')
-                    data.forEach(function(d, i){
-                        if(d.SiteName == content[0]){
+                    content = content.replaceAll(' ', '').replace('\n', '').split('\n')
+                    data.forEach(function (d, i) {
+                        if (d.SiteName == content[0]) {
                             renderDetail(d)
                             renderMainCity(d)
                         }
@@ -145,4 +145,12 @@ function renderDetail(item) {
     <div class="detail5"><p>二氧化硫　<span> SO2 (ppb)</span></p><p class="detailNum">${item.SO2}</p></div>
     <div class="detail6"><p>二氧化氮　<span> NO2 (ppb)</span></p><p class="detailNum">${item.NO2}</p></div>          
     `
+}
+
+//更新日期
+function date(data) {
+    let date = data[0].ImportDate
+    date = date.split('.')
+    date = date[0].slice('0', '16')
+    upDate.innerHTML = `${date} 更新`
 }
