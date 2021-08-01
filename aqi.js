@@ -130,7 +130,7 @@ function color(num, item) {
 //判斷字體大小
 function textSize(item) {
     let text = item.textContent
-    if (text.length > 3) {
+    if (text.length >= 3) {
         item.style.fontSize = '32px'
     }
 }
